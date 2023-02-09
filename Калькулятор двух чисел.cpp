@@ -5,9 +5,6 @@ using namespace std;
 class Calculator
 {
 public:
-    double num1 = -1;
-    double num2 = -1;
-
     double add()
     {
         return num1 + num2;
@@ -34,8 +31,9 @@ public:
     }
     bool set_num1(double num1)
     {
-        if (this -> num1 != 0)
+        if (num1 != 0)
         {
+            this->num1 = num1;
             return true;
         }
         else
@@ -48,6 +46,7 @@ public:
     {
         if (this -> num2 != 0)
         {
+            this->num2 = num2;
             return true;
         }
         else
@@ -55,6 +54,9 @@ public:
             return false;
         }
     }
+private:
+    double num1 = 1;
+    double num2 = 1;
 };
 
 int main()
@@ -62,30 +64,32 @@ int main()
     setlocale(LC_ALL,"rus");
 
     Calculator calc;
+    double num1 = 1; 
+    double num2 = 1;
 
     while (true)
     {
         do
         {
-            if (calc.num1 == 0)
+            if (!calc.set_num1(num1))
             {
                 cout << "Неверный ввод!" << endl;
             }
             cout << "Введите num1: ";
-            cin >> calc.num1;
+            cin >> num1;
 
-        } while (!calc.set_num1(calc.num1));
-
+        } while (!calc.set_num1(num1));
+        
         do
         {
-            if (calc.num2 == 0)
+            if (!calc.set_num1(num2))
             {
                 cout << "Неверный ввод!" << endl;
             }
             cout << "Введите num2: ";
-            cin >> calc.num2;
+            cin >> num2;
 
-        } while (!calc.set_num1(calc.num2));
+        } while (!calc.set_num1(num2));
 
         cout << "num1 + num2 = " << calc.add() << endl;
         cout << "num1 * num2 = " << calc.multiply() << endl;
